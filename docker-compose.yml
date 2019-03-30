@@ -16,3 +16,13 @@ services:
       # . - current directory on the local machine
       # /app - work directory in the container
       - .:/app
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    # Overriding starting command
+    # In order to run tests
+    command: ["npm", "run", "test"]
